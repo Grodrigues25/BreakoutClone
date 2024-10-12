@@ -10,20 +10,15 @@ Ball::~Ball()
 {
 }
 
-void Ball::drawBall(sf::RenderWindow& window, bool colision) {
-
-    sf::RectangleShape ball(sf::Vector2f(12, 12));
-    ball.setPosition(ballCoords[0], ballCoords[1]);
-    ball.setFillColor(sf::Color::White);
-
-    if (colision) { cout << "Colision happened!" << endl; }
-
-    window.draw(ball);
-}
-
+// CALCULATIONS
 bool Ball::ballBarCollision(vector<float> playersBarCoords)
 {
     return playersBarCoords[0] < ballCoords[0] + 12 && playersBarCoords[0] + 100 > ballCoords[0] && playersBarCoords[1] < ballCoords[1] + 12 && playersBarCoords[1] + 12 > ballCoords[1];
+}
+
+bool Ball::ballBrickCollision(vector<float> brickCoords)
+{
+    return brickCoords[0] < ballCoords[0] + 12 && brickCoords[0] + 50 > ballCoords[0] && brickCoords[1] < ballCoords[1] + 12 && brickCoords[1] + 12 > ballCoords[1];
 }
 
 void Ball::bounceDirectionCalculation(vector<float> playerBar)
@@ -60,4 +55,16 @@ void Ball::ballMovement(sf::Time time)
         ballCoords[2] = -ballCoords[2];
         ballCoords[1] += speed * -sin(ballCoords[2]) * time.asSeconds();
     }
+}
+
+// RENDERING
+void Ball::drawBall(sf::RenderWindow& window, bool colision) {
+
+    sf::RectangleShape ball(sf::Vector2f(12, 12));
+    ball.setPosition(ballCoords[0], ballCoords[1]);
+    ball.setFillColor(sf::Color::White);
+
+    if (colision) { cout << "Colision happened!" << endl; }
+
+    window.draw(ball);
 }

@@ -9,15 +9,7 @@ PlayerBar::~PlayerBar() {
 
 }
 
-void PlayerBar::drawPlayerBar(sf::RenderWindow& window) {
-
-    sf::RectangleShape playerBar(sf::Vector2f(length, 20.f));
-    playerBar.setFillColor(sf::Color::White);
-    playerBar.setPosition(playerCoords[0], playerCoords[1]);
-
-    window.draw(playerBar);
-}
-
+// CALCULATIONS
 void PlayerBar::updateBarPosition(sf::RenderWindow& window) {
     sf::Vector2f acceleration;
     sf::Vector2f velocity;
@@ -47,3 +39,13 @@ void PlayerBar::updateBarPosition(sf::RenderWindow& window) {
     velocity = 0.99f * velocity;
 
 };
+
+// RENDERING
+void PlayerBar::drawPlayerBar(sf::RenderWindow& window) {
+
+    sf::RectangleShape playerBar(sf::Vector2f(length, 20.f));
+    playerBar.setFillColor(sf::Color::White);
+    playerBar.setPosition(playerCoords[0], playerCoords[1]);
+
+    window.draw(playerBar);
+}

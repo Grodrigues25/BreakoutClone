@@ -6,6 +6,7 @@
 #include <random>
 #include "PlayerBar.h"
 #include "Ball.h"
+#include "Brick.h"
 
 using namespace std;
 
@@ -16,15 +17,16 @@ public:
     int windowWidth;
     int windowHeight;
 
-    bool bColided;
+    bool bColidedPlayerBar;
+    bool bColidedBrick;
     float colisionDelay;
 
 public:
     GameWindow();
     ~GameWindow();
 
-    void renderGame(PlayerBar player1Bar, Ball ball);
+    void renderGame(PlayerBar player1Bar, Ball ball, Brick brick);
 
-    void collisionChecks(Ball& ball, PlayerBar playerBar);
+    void collisionChecks(Ball& ball, PlayerBar playerBar, Brick brick);
 
 };

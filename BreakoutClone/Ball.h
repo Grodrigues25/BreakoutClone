@@ -19,6 +19,8 @@ public:
 
     bool ballBarCollision(vector<float> playersBarCoords);
 
+    bool ballBrickCollision(vector<float> brickCoords);
+
     void bounceDirectionCalculation(vector<float> playerBar);
 
     void ballMovement(sf::Time time);
