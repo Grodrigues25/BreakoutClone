@@ -8,13 +8,13 @@ using namespace std;
 
 class Brick {
 public:
-    int length;
-    int height;
+    static const int length = 50;
+    static const int height = 10;
+    int id;
     vector<float> brickCoords = { 0,0 };
 
 public:
-    Brick();
-    ~Brick();
+    Brick(int id);
 
     void drawBrick(sf::RenderWindow& window);
 

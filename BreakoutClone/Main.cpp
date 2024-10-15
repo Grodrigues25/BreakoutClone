@@ -19,11 +19,19 @@ int main() {
 
     GameWindow GameSession;
 
-    Brick brick;
+    Brick brick(1);
     brick.brickCoords[0] = 200;
     brick.brickCoords[1] = 200;
 
-    GameSession.renderGame(playerBar, ball, brick);
+    Brick brick2(2);
+    brick2.brickCoords[0] = 450;
+    brick2.brickCoords[1] = 400;
+
+    vector<Brick> brickList;
+    brickList.push_back(brick);
+    brickList.push_back(brick2);
+
+    GameSession.renderGame(playerBar, ball, brickList);
 
     return 0;
 }

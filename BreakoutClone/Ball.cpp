@@ -21,7 +21,7 @@ bool Ball::ballBrickCollision(vector<float> brickCoords)
     return brickCoords[0] < ballCoords[0] + 12 && brickCoords[0] + 50 > ballCoords[0] && brickCoords[1] < ballCoords[1] + 12 && brickCoords[1] + 12 > ballCoords[1];
 }
 
-void Ball::bounceDirectionCalculation(vector<float> playerBar)
+void Ball::bounceBarDirectionCalculation(vector<float> playerBar)
 {
     float maxBounceAngle = (5 * std::numbers::pi) / 12;
 
@@ -33,6 +33,31 @@ void Ball::bounceDirectionCalculation(vector<float> playerBar)
     ballCoords[2] = bounceAngle + std::numbers::pi/2;
 
     cout << (ballCoords[2] * 360) / (2 * std::numbers::pi) << " degrees\n";
+}
+
+void Ball::bounceBrickDirectionCalculation(Brick brick)
+{
+
+    if (ballCoords[0] < brick.brickCoords[0] && ballCoords[1] >= brick.brickCoords[1] - 12 && ballCoords[1] <= brick.brickCoords[1] + brick.height) {
+        cout << "Left Brick Collision" << endl;
+        ballCoords[2] >= 0 ? ballCoords[2] = std::numbers::pi - ballCoords[2] : ballCoords[2] = -std::numbers::pi - ballCoords[2];
+    }
+
+    else if (ballCoords[0] + 12 > brick.brickCoords[0] + brick.length && ballCoords[1] >= brick.brickCoords[1] - 12 && ballCoords[1] <= brick.brickCoords[1] + brick.height) {
+        cout << "Right Brick Collision" << endl;
+        ballCoords[2] >= 0 ? ballCoords[2] = std::numbers::pi - ballCoords[2] : ballCoords[2] = -std::numbers::pi - ballCoords[2];
+    }
+
+    else if (ballCoords[0] >= brick.brickCoords[0] - 12 && ballCoords[0] <= brick.brickCoords[0] + brick.length && ballCoords[1] < brick.brickCoords[1]) {
+        cout << "Top Brick Collision" << endl;
+        ballCoords[2] = -ballCoords[2];
+    }
+
+    else if (ballCoords[0] > brick.brickCoords[0] - 12 && ballCoords[0] < brick.brickCoords[0] + brick.length && ballCoords[1] + 12 > brick.brickCoords[1] + brick.height) {
+        cout << "Bottom Brick Collision" << endl;
+        ballCoords[2] = -ballCoords[2];
+    }
+
 }
 
 void Ball::ballMovement(sf::Time time)

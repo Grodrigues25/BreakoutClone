@@ -1,7 +1,6 @@
 #include "PlayerBar.h"
 
 PlayerBar::PlayerBar() {
-    PlayerBar::length = 100;
     PlayerBar::playerCoords = { 500, 1100 };
 }
 
