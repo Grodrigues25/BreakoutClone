@@ -20,29 +20,29 @@ int main() {
 
     GameWindow GameSession;
 
-    Brick brick(1);
-    brick.brickCoords[0] = 200;
-    brick.brickCoords[1] = 200;
+    //Brick brick(1);
+    //brick.brickCoords[0] = 200;
+    //brick.brickCoords[1] = 200;
 
-    Brick brick2(2);
-    brick2.brickCoords[0] = 450;
-    brick2.brickCoords[1] = 400;
+    //Brick brick2(2);
+    //brick2.brickCoords[0] = 450;
+    //brick2.brickCoords[1] = 400;
 
-    Brick brick3(3);
-    brick3.brickCoords[0] = 750;
-    brick3.brickCoords[1] = 400;
+    //Brick brick3(3);
+    //brick3.brickCoords[0] = 750;
+    //brick3.brickCoords[1] = 400;
 
-    Brick brick4(4);
-    brick4.brickCoords[0] = 450;
-    brick4.brickCoords[1] = 700;
+    //Brick brick4(4);
+    //brick4.brickCoords[0] = 450;
+    //brick4.brickCoords[1] = 700;
 
-    vector<Brick> brickList;
-    brickList.push_back(brick);
-    brickList.push_back(brick2);
-    brickList.push_back(brick3);
-    brickList.push_back(brick4);
+    //vector<Brick> brickList;
+    //brickList.push_back(brick);
+    //brickList.push_back(brick2);
+    //brickList.push_back(brick3);
+    //brickList.push_back(brick4);
 
-    GameSession.renderGame(playerBar, ball, brickList);
+    GameSession.renderGame(playerBar, ball);
 
     return 0;
 }

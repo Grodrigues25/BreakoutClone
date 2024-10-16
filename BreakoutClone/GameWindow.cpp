@@ -5,6 +5,7 @@ GameWindow::GameWindow()
     GameWindow::bColidedPlayerBar = false;
     GameWindow::bColidedBrick = false;
     GameWindow::colisionDelay = 0;
+    GameWindow::brickList;
 }
 
 GameWindow::~GameWindow()
@@ -27,16 +28,25 @@ void GameWindow::collisionChecks(Ball& ball, PlayerBar playerBar, Brick brick)
     }
 }
 
+void GameWindow::brickObjectsCreation()
+{
+    int i = 0;
+    for (i = 0; i < 20; i++) {
+        brickList.push_back(Brick(i, 2 + i * (50 + 4), 200));
+    }
+}
+
 void GameWindow::drawLevel(sf::RenderWindow& window, vector<Brick> brickList) {
 
     int i;
+
     for (i = 0; i <= brickList.size() - 1; i++) {
         brickList[i].drawBrick(window);
     }
 
 }
 
-void GameWindow::renderGame(PlayerBar player1Bar, Ball ball, vector<Brick> brickList)
+void GameWindow::renderGame(PlayerBar player1Bar, Ball ball)
 {
 
     sf::ContextSettings settings;
@@ -48,6 +58,8 @@ void GameWindow::renderGame(PlayerBar player1Bar, Ball ball, vector<Brick> brick
     sf::RectangleShape background(sf::Vector2f(windowWidth, windowHeight));
     background.setFillColor(sf::Color::Black);
     window.setVerticalSyncEnabled(true);
+
+    brickObjectsCreation();
 
     while (window.isOpen()) {
 

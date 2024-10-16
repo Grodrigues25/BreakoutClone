@@ -14,7 +14,7 @@ public:
     vector<float> brickCoords = { 0,0 };
 
 public:
-    Brick(int id);
+    Brick(int id, int CoordsX, int CoordsY);
 
     void drawBrick(sf::RenderWindow& window);
 
