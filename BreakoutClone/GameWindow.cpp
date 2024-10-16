@@ -15,7 +15,7 @@ GameWindow::~GameWindow()
 void GameWindow::collisionChecks(Ball& ball, PlayerBar playerBar, Brick brick)
 {
     bColidedPlayerBar = ball.ballBarCollision(playerBar.playerCoords);
-    bColidedBrick = ball.ballBrickCollision(brick.brickCoords);
+    bColidedBrick = ball.ballBrickCollision(brick);
 
     if (bColidedPlayerBar && colisionDelay > 1) {
         colisionDelay = 0;
@@ -25,6 +25,7 @@ void GameWindow::collisionChecks(Ball& ball, PlayerBar playerBar, Brick brick)
     if (bColidedBrick && colisionDelay > 0.1) {
         colisionDelay = 0;
         ball.bounceBrickDirectionCalculation(brick);
+
     }
 }
 
@@ -82,13 +83,18 @@ void GameWindow::renderGame(PlayerBar player1Bar, Ball ball)
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)) { player1Bar.updateBarPosition(window); }
 
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) { ball.updateBallPosition(window); }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) { ball.updateBallPosition(window); }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) { ball.updateBallPosition(window);; }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) { ball.updateBallPosition(window); }
+
         colisionDelay += clock.getElapsedTime().asSeconds();
         sf::Time elapsed = clock.restart();
-        for (int i = 0; i <= brickList.size() - 1; i++) {
-            collisionChecks(ball, player1Bar, brickList[i]);
-        }
+        //for (int i = 0; i <= brickList.size() - 1; i++) {
+        collisionChecks(ball, player1Bar, brickList[10]);
+        //}
         
-        ball.ballMovement(elapsed);
+        //ball.ballMovement(elapsed);
 
         // Rendering
         window.clear();
@@ -98,9 +104,9 @@ void GameWindow::renderGame(PlayerBar player1Bar, Ball ball)
 
         ball.drawBall(window, bColidedPlayerBar);
 
-        for (int i = 0; i <= brickList.size() - 1; i++) {
-            brickList[i].drawBrick(window);
-        }
+        //for (int i = 0; i <= brickList.size() - 1; i++) {
+        brickList[10].drawBrick(window);
+        //}
       
         window.display();
     }

@@ -21,11 +21,14 @@ public:
 
     bool ballBarCollision(vector<float> playersBarCoords);
 
-    bool ballBrickCollision(vector<float> brickCoords);
+    bool ballBrickCollision(Brick brick);
 
     void bounceBarDirectionCalculation(vector<float> playerBar);
 
     void bounceBrickDirectionCalculation(Brick brick);
 
     void ballMovement(sf::Time time);
+
+    //TEMP FUNCTION
+    void updateBallPosition(sf::RenderWindow& window);
 };
