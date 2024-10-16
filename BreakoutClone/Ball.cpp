@@ -19,9 +19,9 @@ bool Ball::ballBarCollision(vector<float> playersBarCoords)
 
 bool Ball::ballBrickCollision(vector<float> brickCoords)
 {
-    if (brickCoords[0] - 2 < ballCoords[0] + ballWidth && brickCoords[0] + 52 > ballCoords[0] && brickCoords[1] - 2 < ballCoords[1] + ballWidth && brickCoords[1] + 2 + ballWidth > ballCoords[1]){ cout << "Brick Collision Detected" << endl; }
+    if (brickCoords[0] < ballCoords[0] + ballWidth && brickCoords[0] + 50 > ballCoords[0] && brickCoords[1]  < ballCoords[1] + ballWidth && brickCoords[1] + ballWidth > ballCoords[1]){ cout << "Brick Collision Detected" << endl; }
     
-    return brickCoords[0]-2 < ballCoords[0] + ballWidth && brickCoords[0] + 52 > ballCoords[0] && brickCoords[1]-2 < ballCoords[1] + ballWidth && brickCoords[1]+2 + ballWidth > ballCoords[1];
+    return brickCoords[0] < ballCoords[0] + ballWidth && brickCoords[0] + 50 > ballCoords[0] && brickCoords[1] < ballCoords[1] + ballWidth && brickCoords[1] + ballWidth > ballCoords[1];
 }
 
 void Ball::bounceBarDirectionCalculation(vector<float> playerBar)
