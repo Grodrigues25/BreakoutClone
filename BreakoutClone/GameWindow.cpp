@@ -33,7 +33,11 @@ void GameWindow::drawBricks(sf::RenderWindow& window, vector<Brick> brickList) {
 
 void GameWindow::renderGame(PlayerBar player1Bar, Ball ball, vector<Brick> brickList)
 {
-    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "TicTacToe");
+
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 8;
+
+    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Breakout", sf::Style::Close, settings);
     sf::Event event;
     sf::Clock clock;
     sf::RectangleShape background(sf::Vector2f(windowWidth, windowHeight));
@@ -68,8 +72,9 @@ void GameWindow::renderGame(PlayerBar player1Bar, Ball ball, vector<Brick> brick
 
         ball.drawBall(window, bColidedPlayerBar);
 
-        brickList[0].drawBrick(window);
-        brickList[1].drawBrick(window);
+        for (int i = 0; i <= brickList.size() - 1; i++) {
+            brickList[i].drawBrick(window);
+        }
       
         window.display();
     }
