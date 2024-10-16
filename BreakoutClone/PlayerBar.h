@@ -7,7 +7,8 @@ using namespace std;
 
 class PlayerBar {
 public:
-    int length;
+    
+    static const int length = 100;
     vector<float> playerCoords;
 
 public:

@@ -2,12 +2,8 @@
 
 GameWindow::GameWindow()
 {
-    // SETTINGS
-    GameWindow::windowWidth = 1080;
-    GameWindow::windowHeight = 1200;
-
-    // VARIABLES
-    GameWindow::bColided = false;
+    GameWindow::bColidedPlayerBar = false;
+    GameWindow::bColidedBrick = false;
     GameWindow::colisionDelay = 0;
 }
 
@@ -15,21 +11,33 @@ GameWindow::~GameWindow()
 {
 }
 
-void GameWindow::collisionChecks(Ball& ball, PlayerBar playerBar)
+void GameWindow::collisionChecks(Ball& ball, PlayerBar playerBar, Brick brick)
 {
-    bColided = ball.ballBarCollision(playerBar.playerCoords);
+    bColidedPlayerBar = ball.ballBarCollision(playerBar.playerCoords);
+    bColidedBrick = ball.ballBrickCollision(brick.brickCoords);
 
-    if (bColided && colisionDelay > 1) {
+    if (bColidedPlayerBar && colisionDelay > 1) {
         colisionDelay = 0;
-        ball.bounceDirectionCalculation(playerBar.playerCoords);
+        ball.bounceBarDirectionCalculation(playerBar.playerCoords);
+    }
+
+    if (bColidedBrick && colisionDelay > 0.001) {
+        colisionDelay = 0;
+        ball.bounceBrickDirectionCalculation(brick);
     }
 }
 
+void GameWindow::drawBricks(sf::RenderWindow& window, vector<Brick> brickList) {
 
+}
 
-void GameWindow::renderGame(PlayerBar player1Bar, Ball ball)
+void GameWindow::renderGame(PlayerBar player1Bar, Ball ball, vector<Brick> brickList)
 {
-    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "TicTacToe");
+
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 8;
+
+    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Breakout", sf::Style::Close, settings);
     sf::Event event;
     sf::Clock clock;
     sf::RectangleShape background(sf::Vector2f(windowWidth, windowHeight));
@@ -50,9 +58,10 @@ void GameWindow::renderGame(PlayerBar player1Bar, Ball ball)
 
         colisionDelay += clock.getElapsedTime().asSeconds();
         sf::Time elapsed = clock.restart();
-
-        collisionChecks(ball, player1Bar);
-
+        for (int i = 0; i <= brickList.size() - 1; i++) {
+            collisionChecks(ball, player1Bar, brickList[i]);
+        }
+        
         ball.ballMovement(elapsed);
 
         // Rendering
@@ -61,8 +70,12 @@ void GameWindow::renderGame(PlayerBar player1Bar, Ball ball)
 
         player1Bar.drawPlayerBar(window);
 
-        ball.drawBall(window, bColided);
+        ball.drawBall(window, bColidedPlayerBar);
 
+        for (int i = 0; i <= brickList.size() - 1; i++) {
+            brickList[i].drawBrick(window);
+        }
+      
         window.display();
     }
 

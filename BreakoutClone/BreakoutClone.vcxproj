@@ -142,12 +142,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Brick.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PlayerBar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="Brick.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="PlayerBar.h" />
   </ItemGroup>

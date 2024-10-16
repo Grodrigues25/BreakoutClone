@@ -3,6 +3,7 @@
 #include <iostream>
 #include "SFML/Graphics.hpp"
 #include <numbers>
+#include "Brick.h"
 
 using namespace std;
 
@@ -19,7 +20,11 @@ public:
 
     bool ballBarCollision(vector<float> playersBarCoords);
 
-    void bounceDirectionCalculation(vector<float> playerBar);
+    bool ballBrickCollision(vector<float> brickCoords);
+
+    void bounceBarDirectionCalculation(vector<float> playerBar);
+
+    void bounceBrickDirectionCalculation(Brick brick);
 
     void ballMovement(sf::Time time);
 };
