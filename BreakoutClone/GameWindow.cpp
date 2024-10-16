@@ -27,7 +27,12 @@ void GameWindow::collisionChecks(Ball& ball, PlayerBar playerBar, Brick brick)
     }
 }
 
-void GameWindow::drawBricks(sf::RenderWindow& window, vector<Brick> brickList) {
+void GameWindow::drawLevel(sf::RenderWindow& window, vector<Brick> brickList) {
+
+    int i;
+    for (i = 0; i <= brickList.size() - 1; i++) {
+        brickList[i].drawBrick(window);
+    }
 
 }
 

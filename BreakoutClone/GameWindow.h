@@ -29,6 +29,6 @@ public:
 
     void collisionChecks(Ball& ball, PlayerBar playerBar, Brick brick);
 
-    void drawBricks(sf::RenderWindow& window, vector<Brick> brickList);
+    void drawLevel(sf::RenderWindow& window, vector<Brick> brickList);
 
 };
