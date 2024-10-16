@@ -66,22 +66,24 @@ void Ball::bounceBrickDirectionCalculation(Brick brick)
 void Ball::ballMovement(sf::Time time)
 {
     float speed = 800;
+    float horizontalMovement = speed * cos(ballCoords[2]) * time.asSeconds();
+    float verticalMovement = speed * -sin(ballCoords[2]) * time.asSeconds();
 
     // Horizontal colision checks
-    if (ballCoords[0] + speed * cos(ballCoords[2]) * time.asSeconds() >= 1080 || ballCoords[0] + speed * cos(ballCoords[2]) * time.asSeconds() <= 0) {
+    if (ballCoords[0] + horizontalMovement >= 1080 || ballCoords[0] + horizontalMovement <= 0) {
         ballCoords[2] >= 0 ? ballCoords[2] = std::numbers::pi - ballCoords[2] : ballCoords[2] = -std::numbers::pi - ballCoords[2];
     }
     else {
-        ballCoords[0] += speed * cos(ballCoords[2]) * time.asSeconds();
+        ballCoords[0] += horizontalMovement;
     }
 
     // TOP and BOTTOM colision checks
-    if (ballCoords[1] + speed * -sin(ballCoords[2]) * time.asSeconds() <= 1180 && ballCoords[1] + speed * -sin(ballCoords[2]) * time.asSeconds() >= 0) {
-        ballCoords[1] += speed * -sin(ballCoords[2]) * time.asSeconds();
+    if (ballCoords[1] + verticalMovement <= 1180 && ballCoords[1] + verticalMovement >= 0) {
+        ballCoords[1] += verticalMovement;
     }
     else {
         ballCoords[2] = -ballCoords[2];
-        ballCoords[1] += speed * -sin(ballCoords[2]) * time.asSeconds();
+        ballCoords[1] += verticalMovement;
     }
 }
 
