@@ -1,11 +1,9 @@
 #include "Brick.h"
 
-Brick::Brick(int id, int CoordsX, int CoordsY)
+Brick::Brick(int CoordsX, int CoordsY)
 {
-    this->id = id;
     brickCoords[0] = CoordsX;
     brickCoords[1] = CoordsY;
-
 }
 
 void Brick::drawBrick(sf::RenderWindow& window)

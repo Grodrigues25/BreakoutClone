@@ -12,27 +12,14 @@ GameWindow::~GameWindow()
 {
 }
 
-void GameWindow::playerBarCollisionChecks(Ball& ball, PlayerBar playerBar)
-{
-
-
-}
-
-void GameWindow::brickCollisionCheck(Ball& ball, Brick brick) {
-
-
-}
-
 void GameWindow::brickObjectsCreation()
 {
-    int id = 0;
     int CoordY = 200;
 
     for (int i = 0; i <= 20; i++) {
         int CoordX = 2 + i * (50 + 4);       
         if (CoordX + 50 > 1080 && CoordY <= 290) { i = -1; CoordY += 30; }
-        brickList.push_back(Brick(id, CoordX, CoordY));
-        id++;
+        brickList.push_back(Brick(CoordX, CoordY));
     }
 }
 
@@ -77,7 +64,7 @@ void GameWindow::renderGame(PlayerBar playerBar, Ball ball)
         if (ball.ballBarCollision(playerBar.playerCoords) && colisionDelay > 1) { colisionDelay = 0; ball.bounceBarDirectionCalculation(playerBar.playerCoords); }
 
         for (int i = 0; i <= brickList.size() - 1; i++) {
-            if (ball.ballBrickCollision(brickList[i].brickCoords) && colisionDelay > 1)
+            if (ball.ballBrickCollision(brickList[i].brickCoords))
             { 
                 colisionDelay = 0; 
                 ball.bounceBrickDirectionCalculation(brickList[i]);

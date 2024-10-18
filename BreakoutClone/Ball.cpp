@@ -65,7 +65,7 @@ void Ball::bounceBrickDirectionCalculation(Brick brick)
 
 void Ball::ballMovement(sf::Time time)
 {
-    float speed = 400;
+    float speed = 800;
     float horizontalMovement = speed * cos(ballCoords[2]) * time.asSeconds();
     float verticalMovement = speed * -sin(ballCoords[2]) * time.asSeconds();
 
