@@ -12,10 +12,15 @@ GameWindow::~GameWindow()
 {
 }
 
-void GameWindow::collisionChecks(Ball& ball, PlayerBar playerBar, Brick brick)
+void GameWindow::playerBarCollisionChecks(Ball& ball, PlayerBar playerBar)
 {
-    if (ball.ballBarCollision(playerBar.playerCoords) && colisionDelay > 1) { colisionDelay = 0; ball.bounceBarDirectionCalculation(playerBar.playerCoords); }
-    if (ball.ballBrickCollision(brick.brickCoords) && colisionDelay > 1) { colisionDelay = 0; ball.bounceBrickDirectionCalculation(brick); }
+
+
+}
+
+void GameWindow::brickCollisionCheck(Ball& ball, Brick brick) {
+
+
 }
 
 void GameWindow::brickObjectsCreation()
@@ -36,7 +41,7 @@ void GameWindow::drawLevel(sf::RenderWindow& window, vector<Brick> brickList) {
     for (int i = 0; i <= brickList.size() - 1; i++) { brickList[i].drawBrick(window); }
 }
 
-void GameWindow::renderGame(PlayerBar player1Bar, Ball ball)
+void GameWindow::renderGame(PlayerBar playerBar, Ball ball)
 {
     // SETTINGS
     sf::ContextSettings settings;
@@ -62,14 +67,22 @@ void GameWindow::renderGame(PlayerBar player1Bar, Ball ball)
                 break;
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)) { player1Bar.updateBarPosition(window); }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)) { playerBar.updateBarPosition(window); }
 
         // OBJECTS MOVEMENT CALCULATIONS
         colisionDelay += clock.getElapsedTime().asSeconds();
         sf::Time elapsed = clock.restart();
 
+        // COLLISIONS
+        if (ball.ballBarCollision(playerBar.playerCoords) && colisionDelay > 1) { colisionDelay = 0; ball.bounceBarDirectionCalculation(playerBar.playerCoords); }
+
         for (int i = 0; i <= brickList.size() - 1; i++) {
-            collisionChecks(ball, player1Bar, brickList[i]);
+            if (ball.ballBrickCollision(brickList[i].brickCoords) && colisionDelay > 1)
+            { 
+                colisionDelay = 0; 
+                ball.bounceBrickDirectionCalculation(brickList[i]);
+                brickList.erase(brickList.begin() + i);
+            }
         }
         
         ball.ballMovement(elapsed);
@@ -78,7 +91,7 @@ void GameWindow::renderGame(PlayerBar player1Bar, Ball ball)
         window.clear();
         window.draw(background);
 
-        player1Bar.drawPlayerBar(window);
+        playerBar.drawPlayerBar(window);
         ball.drawBall(window, bColidedPlayerBar);
 
         for (int i = 0; i <= brickList.size() - 1; i++) {

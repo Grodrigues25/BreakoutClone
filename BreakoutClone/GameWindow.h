@@ -28,7 +28,9 @@ public:
 
     void renderGame(PlayerBar player1Bar, Ball ball);
 
-    void collisionChecks(Ball& ball, PlayerBar playerBar, Brick brick);
+    void playerBarCollisionChecks(Ball& ball, PlayerBar playerBar);
+
+    void brickCollisionCheck(Ball& ball, Brick brick);
 
     void brickObjectsCreation();
 
