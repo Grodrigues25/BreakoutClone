@@ -78,7 +78,7 @@ void Ball::ballMovement(sf::Time time)
     }
 
     // TOP and BOTTOM colision checks
-    if (ballCoords[1] + verticalMovement <= 1208 && ballCoords[1] + verticalMovement >= 20) {
+    if (ballCoords[1] + verticalMovement <= 1208 && ballCoords[1] + verticalMovement >= 140) {
         ballCoords[1] += verticalMovement;
     }
     else {

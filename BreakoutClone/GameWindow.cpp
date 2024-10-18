@@ -38,6 +38,23 @@ void GameWindow::renderUI(sf::RenderWindow& window)
     background.setFillColor(sf::Color::Black);
     background.setPosition(20, 20);
     window.draw(background);
+
+    sf::RectangleShape gameplayCeiling(sf::Vector2f(1080, 20));
+    gameplayCeiling.setFillColor(sf::Color::White);
+    gameplayCeiling.setPosition(20, 120);
+    window.draw(gameplayCeiling);
+
+    sf::Text title;
+    sf::Font font;
+    font.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\breakout.ttf");
+    title.setFont(font);
+    title.setString("Breakout");
+    title.setCharacterSize(48); // in pixels, not points!
+    title.setFillColor(sf::Color::White);
+    title.setStyle(sf::Text::Bold);
+    title.setPosition(450, 30);
+    window.draw(title);
+
 }
 
 void GameWindow::renderGame(PlayerBar playerBar, Ball ball)
