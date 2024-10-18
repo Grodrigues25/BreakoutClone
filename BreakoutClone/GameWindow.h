@@ -20,15 +20,16 @@ public:
     bool bColidedPlayerBar;
     bool bColidedBrick;
     float colisionDelay;
+    vector<Brick> brickList;
 
 public:
     GameWindow();
     ~GameWindow();
 
-    void renderGame(PlayerBar player1Bar, Ball ball, vector<Brick> brickList);
+    void renderGame(PlayerBar player1Bar, Ball ball);
 
-    void collisionChecks(Ball& ball, PlayerBar playerBar, Brick brick);
+    void brickObjectsCreation();
 
-    void drawBricks(sf::RenderWindow& window, vector<Brick> brickList);
+    void drawLevel(sf::RenderWindow& window, vector<Brick> brickList);
 
 };

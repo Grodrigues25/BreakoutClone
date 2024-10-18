@@ -11,6 +11,7 @@ class Ball {
 public:
     vector<float> ballCoords;
     float bounceAngle;
+    int ballWidth;
 
 public:
     Ball();
