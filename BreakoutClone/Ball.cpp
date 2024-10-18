@@ -70,7 +70,7 @@ void Ball::ballMovement(sf::Time time)
     float verticalMovement = speed * -sin(ballCoords[2]) * time.asSeconds();
 
     // Horizontal colision checks
-    if (ballCoords[0] + horizontalMovement >= 1080 || ballCoords[0] + horizontalMovement <= 0) {
+    if (ballCoords[0] + horizontalMovement >= 1088 || ballCoords[0] + horizontalMovement <= 20) {
         ballCoords[2] >= 0 ? ballCoords[2] = std::numbers::pi - ballCoords[2] : ballCoords[2] = -std::numbers::pi - ballCoords[2];
     }
     else {
@@ -78,7 +78,7 @@ void Ball::ballMovement(sf::Time time)
     }
 
     // TOP and BOTTOM colision checks
-    if (ballCoords[1] + verticalMovement <= 1180 && ballCoords[1] + verticalMovement >= 0) {
+    if (ballCoords[1] + verticalMovement <= 1208 && ballCoords[1] + verticalMovement >= 20) {
         ballCoords[1] += verticalMovement;
     }
     else {

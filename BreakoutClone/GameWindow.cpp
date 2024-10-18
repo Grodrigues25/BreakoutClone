@@ -16,8 +16,8 @@ void GameWindow::brickObjectsCreation()
 {
     int CoordY = 200;
 
-    for (int i = 0; i <= 20; i++) {
-        int CoordX = 2 + i * (50 + 4);       
+    for (int i = -1; i < 20; i++) {
+        int CoordX = 22 + i * (50 + 4);       
         if (CoordX + 50 > 1080 && CoordY <= 290) { i = -1; CoordY += 30; }
         brickList.push_back(Brick(CoordX, CoordY));
     }
@@ -28,6 +28,18 @@ void GameWindow::drawLevel(sf::RenderWindow& window, vector<Brick> brickList) {
     for (int i = 0; i <= brickList.size() - 1; i++) { brickList[i].drawBrick(window); }
 }
 
+void GameWindow::renderUI(sf::RenderWindow& window)
+{
+    sf::RectangleShape outerEdges(sf::Vector2f(1120, 1240));
+    outerEdges.setFillColor(sf::Color::White);
+    window.draw(outerEdges);
+
+    sf::RectangleShape background(sf::Vector2f(1080, 1200));
+    background.setFillColor(sf::Color::Black);
+    background.setPosition(20, 20);
+    window.draw(background);
+}
+
 void GameWindow::renderGame(PlayerBar playerBar, Ball ball)
 {
     // SETTINGS
@@ -36,8 +48,7 @@ void GameWindow::renderGame(PlayerBar playerBar, Ball ball)
 
     // CREATE WINDOW
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Breakout", sf::Style::Close, settings);
-    sf::RectangleShape background(sf::Vector2f(windowWidth, windowHeight));
-    background.setFillColor(sf::Color::Black);
+
 
     // OBJECT CREATION
     sf::Event event;
@@ -76,7 +87,8 @@ void GameWindow::renderGame(PlayerBar playerBar, Ball ball)
 
         // RENDERING
         window.clear();
-        window.draw(background);
+        renderUI(window);
+        //window.draw(background);
 
         playerBar.drawPlayerBar(window);
         ball.drawBall(window, bColidedPlayerBar);

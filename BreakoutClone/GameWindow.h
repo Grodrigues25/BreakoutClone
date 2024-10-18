@@ -14,8 +14,8 @@ class GameWindow {
 public:
 
     // SETTINGS
-    static const int windowWidth = 1080;
-    static const int windowHeight = 1200;
+    static const int windowWidth = 1120;
+    static const int windowHeight = 1240;
 
     bool bColidedPlayerBar;
     bool bColidedBrick;
@@ -31,5 +31,7 @@ public:
     void brickObjectsCreation();
 
     void drawLevel(sf::RenderWindow& window, vector<Brick> brickList);
+
+    void renderUI(sf::RenderWindow& window);
 
 };
