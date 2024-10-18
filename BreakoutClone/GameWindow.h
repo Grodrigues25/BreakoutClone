@@ -32,6 +32,6 @@ public:
 
     void drawLevel(sf::RenderWindow& window, vector<Brick> brickList);
 
-    void renderUI(sf::RenderWindow& window);
+    void renderUI(sf::RenderWindow& window, int& lives, int& score);
 
 };

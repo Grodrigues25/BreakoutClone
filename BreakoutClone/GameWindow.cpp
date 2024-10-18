@@ -28,7 +28,7 @@ void GameWindow::drawLevel(sf::RenderWindow& window, vector<Brick> brickList) {
     for (int i = 0; i <= brickList.size() - 1; i++) { brickList[i].drawBrick(window); }
 }
 
-void GameWindow::renderUI(sf::RenderWindow& window)
+void GameWindow::renderUI(sf::RenderWindow& window, int& lives, int& score)
 {
     sf::RectangleShape outerEdges(sf::Vector2f(1120, 1240));
     outerEdges.setFillColor(sf::Color::White);
@@ -44,15 +44,32 @@ void GameWindow::renderUI(sf::RenderWindow& window)
     gameplayCeiling.setPosition(20, 120);
     window.draw(gameplayCeiling);
 
-    sf::Text title;
     sf::Font font;
     font.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\breakout.ttf");
+    
+    sf::Text title;
     title.setFont(font);
     title.setString("Breakout");
     title.setCharacterSize(48); // in pixels, not points!
     title.setFillColor(sf::Color::White);
     title.setStyle(sf::Text::Bold);
-    title.setPosition(450, 30);
+    title.setPosition(450, 25);
+    window.draw(title);
+
+    sf::Text Lives;
+    title.setFont(font);
+    title.setString("Lives " + std::to_string(lives));
+    title.setCharacterSize(24); // in pixels, not points!
+    title.setFillColor(sf::Color::White);
+    title.setPosition(40, 85);
+    window.draw(title);
+
+    sf::Text Score;
+    title.setFont(font);
+    title.setString("Score " + std::to_string(score));
+    title.setCharacterSize(24); // in pixels, not points!
+    title.setFillColor(sf::Color::White);
+    title.setPosition(200, 85);
     window.draw(title);
 
 }
@@ -66,10 +83,12 @@ void GameWindow::renderGame(PlayerBar playerBar, Ball ball)
     // CREATE WINDOW
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Breakout", sf::Style::Close, settings);
 
-
     // OBJECT CREATION
     sf::Event event;
     sf::Clock clock;
+
+    int lives = 3;
+    int score = 0;
 
     brickObjectsCreation();
 
@@ -97,6 +116,7 @@ void GameWindow::renderGame(PlayerBar playerBar, Ball ball)
                 colisionDelay = 0; 
                 ball.bounceBrickDirectionCalculation(brickList[i]);
                 brickList.erase(brickList.begin() + i);
+                score += 100;
             }
         }
         
@@ -104,8 +124,7 @@ void GameWindow::renderGame(PlayerBar playerBar, Ball ball)
 
         // RENDERING
         window.clear();
-        renderUI(window);
-        //window.draw(background);
+        renderUI(window, lives, score);
 
         playerBar.drawPlayerBar(window);
         ball.drawBall(window, bColidedPlayerBar);
