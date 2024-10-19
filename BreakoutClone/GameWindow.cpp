@@ -34,7 +34,7 @@ void GameWindow::renderUI(sf::RenderWindow& window, int& lives, int& score)
     outerEdges.setFillColor(sf::Color::White);
     window.draw(outerEdges);
 
-    sf::RectangleShape background(sf::Vector2f(1080, 1200));
+    sf::RectangleShape background(sf::Vector2f(1080, 1220));
     background.setFillColor(sf::Color::Black);
     background.setPosition(20, 20);
     window.draw(background);
@@ -52,29 +52,28 @@ void GameWindow::renderUI(sf::RenderWindow& window, int& lives, int& score)
     title.setString("Breakout");
     title.setCharacterSize(48); // in pixels, not points!
     title.setFillColor(sf::Color::White);
-    title.setStyle(sf::Text::Bold);
     title.setPosition(450, 25);
     window.draw(title);
 
     sf::Text Lives;
-    title.setFont(font);
-    title.setString("Lives " + std::to_string(lives));
-    title.setCharacterSize(24); // in pixels, not points!
-    title.setFillColor(sf::Color::White);
-    title.setPosition(40, 85);
-    window.draw(title);
+    Lives.setFont(font);
+    Lives.setString("Lives " + std::to_string(lives));
+    Lives.setCharacterSize(24); // in pixels, not points!
+    Lives.setFillColor(sf::Color::White);
+    Lives.setPosition(40, 85);
+    window.draw(Lives);
 
     sf::Text Score;
-    title.setFont(font);
-    title.setString("Score " + std::to_string(score));
-    title.setCharacterSize(24); // in pixels, not points!
-    title.setFillColor(sf::Color::White);
-    title.setPosition(200, 85);
-    window.draw(title);
+    Score.setFont(font);
+    Score.setString("Score " + std::to_string(score));
+    Score.setCharacterSize(24); // in pixels, not points!
+    Score.setFillColor(sf::Color::White);
+    Score.setPosition(200, 85);
+    window.draw(Score);
 
 }
 
-void GameWindow::renderGame(PlayerBar playerBar, Ball ball)
+void GameWindow::runGame(PlayerBar playerBar, Ball ball)
 {
     // SETTINGS
     sf::ContextSettings settings;
@@ -82,6 +81,7 @@ void GameWindow::renderGame(PlayerBar playerBar, Ball ball)
 
     // CREATE WINDOW
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Breakout", sf::Style::Close, settings);
+    window.setVerticalSyncEnabled(true);
 
     // OBJECT CREATION
     sf::Event event;

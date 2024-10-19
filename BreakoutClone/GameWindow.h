@@ -20,13 +20,13 @@ public:
     bool bColidedPlayerBar;
     bool bColidedBrick;
     float colisionDelay;
-    vector<Brick> brickList;
+    vector<Brick> brickList; 
 
 public:
     GameWindow();
     ~GameWindow();
 
-    void renderGame(PlayerBar player1Bar, Ball ball);
+    void runGame(PlayerBar player1Bar, Ball ball);
 
     void brickObjectsCreation();
 

@@ -65,7 +65,7 @@ void Ball::bounceBrickDirectionCalculation(Brick brick)
 
 void Ball::ballMovement(sf::Time time)
 {
-    float speed = 800;
+    float speed = 500;
     float horizontalMovement = speed * cos(ballCoords[2]) * time.asSeconds();
     float verticalMovement = speed * -sin(ballCoords[2]) * time.asSeconds();
 
@@ -78,7 +78,7 @@ void Ball::ballMovement(sf::Time time)
     }
 
     // TOP and BOTTOM colision checks
-    if (ballCoords[1] + verticalMovement <= 1208 && ballCoords[1] + verticalMovement >= 140) {
+    if (ballCoords[1] + verticalMovement <= 1240 && ballCoords[1] + verticalMovement >= 140) {
         ballCoords[1] += verticalMovement;
     }
     else {
