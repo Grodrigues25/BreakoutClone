@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "SFML/Graphics.hpp"
+#include "SFML/Audio.hpp"
 #include <numbers>
 #include <random>
 #include "PlayerBar.h"
@@ -31,6 +32,8 @@ public:
     void brickObjectsCreation();
 
     void drawLevel(sf::RenderWindow& window, vector<Brick> brickList);
+
+    void barColisionSound(sf::SoundBuffer& barColisionSound);
 
     void renderUI(sf::RenderWindow& window, int& lives, int& score);
 
