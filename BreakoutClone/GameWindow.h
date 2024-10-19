@@ -14,22 +14,24 @@ class GameWindow {
 public:
 
     // SETTINGS
-    static const int windowWidth = 1080;
-    static const int windowHeight = 1200;
+    static const int windowWidth = 1120;
+    static const int windowHeight = 1240;
 
     bool bColidedPlayerBar;
     bool bColidedBrick;
     float colisionDelay;
-    vector<Brick> brickList;
+    vector<Brick> brickList; 
 
 public:
     GameWindow();
     ~GameWindow();
 
-    void renderGame(PlayerBar player1Bar, Ball ball);
+    void runGame(PlayerBar player1Bar, Ball ball);
 
     void brickObjectsCreation();
 
     void drawLevel(sf::RenderWindow& window, vector<Brick> brickList);
+
+    void renderUI(sf::RenderWindow& window, int& lives, int& score);
 
 };

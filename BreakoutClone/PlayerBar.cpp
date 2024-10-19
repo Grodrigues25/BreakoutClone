@@ -14,7 +14,7 @@ void PlayerBar::updateBarPosition(sf::RenderWindow& window) {
     sf::Vector2f velocity;
 
     // adjust this at will
-    const float dAcc = 1.0f;
+    const float dAcc = 3.6f;
 
     // set acceleration
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) { acceleration.x -= dAcc; }
@@ -24,11 +24,11 @@ void PlayerBar::updateBarPosition(sf::RenderWindow& window) {
     velocity += acceleration;
 
     // update position through velocity
-    if (playerCoords[0] + velocity.x > 980) {
-        playerCoords[0] = 980;
+    if (playerCoords[0] + velocity.x > 1020) {
+        playerCoords[0] = 1020;
     }
-    else if (playerCoords[0] + velocity.x < 0) {
-        playerCoords[0] = 0;
+    else if (playerCoords[0] + velocity.x < 20) {
+        playerCoords[0] = 20;
     }
     else {
         playerCoords[0] += velocity.x;
