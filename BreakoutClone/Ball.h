@@ -27,5 +27,5 @@ public:
 
     void bounceBrickDirectionCalculation(Brick brick);
 
-    void ballMovement(sf::Time time);
+    void ballMovement(sf::Time time, int& lives, float& gameStartDelay);
 };
