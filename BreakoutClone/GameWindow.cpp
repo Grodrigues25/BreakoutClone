@@ -28,13 +28,9 @@ void GameWindow::drawLevel(sf::RenderWindow& window, vector<Brick> brickList) {
     for (int i = 0; i <= brickList.size() - 1; i++) { brickList[i].drawBrick(window); }
 }
 
-//void GameWindow::barColisionSound(sf::SoundBuffer& barColisionSound) {
-//
-//
-//    sound.play();
-//
-//    cout << "Sound played!" << endl;
-//}
+void GameWindow::barColisionSound(sf::SoundBuffer& barColisionSound) {
+
+}
 
 void GameWindow::renderUI(sf::RenderWindow& window, int& lives, int& score)
 {
@@ -100,9 +96,13 @@ void GameWindow::runGame(PlayerBar playerBar, Ball ball)
 
     brickObjectsCreation();
 
+    // SOUND OBJECTS CREATION AND LOADING OF SOUNDS
+    sf::Sound sound;
     sf::SoundBuffer barColisionSoundObject;
     barColisionSoundObject.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\ballBarBounce.wav");
-    sf::Sound sound;
+
+    sf::SoundBuffer brickColisionSoundObject;
+    brickColisionSoundObject.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\brickDestroyedSound.wav");
 
     sf::Music music;
     if (!music.openFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\game-level-music.wav")) { cout << "Music failed to load!" << endl; }      
@@ -127,17 +127,17 @@ void GameWindow::runGame(PlayerBar playerBar, Ball ball)
 
         // COLLISIONS
         if (ball.ballBarCollision(playerBar.playerCoords) && colisionDelay > 1) { 
-            colisionDelay = 0; 
-            ball.bounceBarDirectionCalculation(playerBar.playerCoords); 
             sound.setBuffer(barColisionSoundObject);
             sound.play();
-
-            cout << "Sound played!" << endl;
+            colisionDelay = 0; 
+            ball.bounceBarDirectionCalculation(playerBar.playerCoords); 
         }
 
         for (int i = 0; i <= brickList.size() - 1; i++) {
             if (ball.ballBrickCollision(brickList[i].brickCoords))
             { 
+                sound.setBuffer(brickColisionSoundObject);
+                sound.play();
                 colisionDelay = 0; 
                 ball.bounceBrickDirectionCalculation(brickList[i]);
                 brickList.erase(brickList.begin() + i);
