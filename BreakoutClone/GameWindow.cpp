@@ -49,7 +49,7 @@ void GameWindow::renderUI(sf::RenderWindow& window, int& lives, int& score)
     window.draw(gameplayCeiling);
 
     sf::Font font;
-    font.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\breakout.ttf");
+    font.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\assets\\breakout.ttf");
     
     sf::Text title;
     title.setFont(font);
@@ -99,13 +99,13 @@ void GameWindow::runGame(PlayerBar playerBar, Ball ball)
     // SOUND OBJECTS CREATION AND LOADING OF SOUNDS
     sf::Sound sound;
     sf::SoundBuffer barColisionSoundObject;
-    barColisionSoundObject.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\ballBarBounce.wav");
+    if (!barColisionSoundObject.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\assets\\ballBarBounce.wav")) { cout << "Ball Bar Bounce sound failed to load!" << endl; }
 
     sf::SoundBuffer brickColisionSoundObject;
-    brickColisionSoundObject.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\brickDestroyedSound.wav");
+    if (!brickColisionSoundObject.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\assets\\brickDestroyedSound.wav")) { cout << "Brick Destroyed Sound failed to load!" << endl; }
 
     sf::Music music;
-    if (!music.openFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\game-level-music.wav")) { cout << "Music failed to load!" << endl; }      
+    if (!music.openFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\assets\\game-level-music.wav")) { cout << "Music failed to load!" << endl; }      
     music.setLoop(true);
     music.play();
 
