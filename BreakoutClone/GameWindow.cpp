@@ -28,6 +28,10 @@ void GameWindow::drawLevel(sf::RenderWindow& window, vector<Brick> brickList) {
     for (int i = 0; i <= brickList.size() - 1; i++) { brickList[i].drawBrick(window); }
 }
 
+void GameWindow::barColisionSound(sf::SoundBuffer& barColisionSound) {
+
+}
+
 void GameWindow::renderUI(sf::RenderWindow& window, int& lives, int& score)
 {
     sf::RectangleShape outerEdges(sf::Vector2f(1120, 1240));
@@ -45,7 +49,7 @@ void GameWindow::renderUI(sf::RenderWindow& window, int& lives, int& score)
     window.draw(gameplayCeiling);
 
     sf::Font font;
-    font.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\breakout.ttf");
+    font.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\assets\\breakout.ttf");
     
     sf::Text title;
     title.setFont(font);
@@ -92,6 +96,20 @@ void GameWindow::runGame(PlayerBar playerBar, Ball ball)
 
     brickObjectsCreation();
 
+    // SOUND OBJECTS CREATION AND LOADING OF SOUNDS
+    sf::Sound sound;
+    sf::SoundBuffer barColisionSoundObject;
+    if (!barColisionSoundObject.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\assets\\ballBarBounce.wav")) { cout << "Ball Bar Bounce sound failed to load!" << endl; }
+
+    sf::SoundBuffer brickColisionSoundObject;
+    if (!brickColisionSoundObject.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\assets\\brickDestroyedSound.wav")) { cout << "Brick Destroyed Sound failed to load!" << endl; }
+
+    sf::Music music;
+    if (!music.openFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\assets\\game-level-music.wav")) { cout << "Music failed to load!" << endl; }      
+    music.setLoop(true);
+    music.play();
+
+
     while (window.isOpen()) {
 
         window.pollEvent(event);
@@ -108,11 +126,18 @@ void GameWindow::runGame(PlayerBar playerBar, Ball ball)
         sf::Time elapsed = clock.restart();
 
         // COLLISIONS
-        if (ball.ballBarCollision(playerBar.playerCoords) && colisionDelay > 1) { colisionDelay = 0; ball.bounceBarDirectionCalculation(playerBar.playerCoords); }
+        if (ball.ballBarCollision(playerBar.playerCoords) && colisionDelay > 1) { 
+            sound.setBuffer(barColisionSoundObject);
+            sound.play();
+            colisionDelay = 0; 
+            ball.bounceBarDirectionCalculation(playerBar.playerCoords); 
+        }
 
         for (int i = 0; i <= brickList.size() - 1; i++) {
             if (ball.ballBrickCollision(brickList[i].brickCoords))
             { 
+                sound.setBuffer(brickColisionSoundObject);
+                sound.play();
                 colisionDelay = 0; 
                 ball.bounceBrickDirectionCalculation(brickList[i]);
                 brickList.erase(brickList.begin() + i);
