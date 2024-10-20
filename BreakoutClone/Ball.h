@@ -12,6 +12,7 @@ public:
     vector<float> ballCoords;
     float bounceAngle;
     int ballWidth;
+    sf::SoundBuffer ballLostLifeSoundObject;
 
 public:
     Ball();
@@ -27,5 +28,7 @@ public:
 
     void bounceBrickDirectionCalculation(Brick brick);
 
-    void ballMovement(sf::Time time, int& lives, float& gameStartDelay);
+    void ballMovement(sf::Time time, int& lives, float& gameStartDelay, sf::Sound& sound);
+
+    void playLostLifeSound(sf::Sound& sound);
 };

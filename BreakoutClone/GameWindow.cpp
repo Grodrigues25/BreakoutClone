@@ -139,7 +139,7 @@ void GameWindow::runGame(PlayerBar playerBar, Ball ball)
         }
         
         if (gameStartDelay > 3) {
-            ball.ballMovement(deltatime, lives, gameStartDelay);
+            ball.ballMovement(deltatime, lives, gameStartDelay, sound);
         }
 
         // RENDERING
