@@ -145,10 +145,10 @@ void GameWindow::renderGameOverScreen(sf::RenderWindow& window) {
 
     gameOver.setFont(font);
     gameOver.setString("GAME OVER");
-    gameOver.setCharacterSize(50); // in pixels, not points!
+    gameOver.setCharacterSize(70); // in pixels, not points!
     gameOver.setFillColor(sf::Color::White);
     gameOver.setStyle(sf::Text::Bold);
-    gameOver.setPosition(400, 500);
+    gameOver.setPosition(350, 500);
 
     window.draw(gameOver);
 
