@@ -245,9 +245,7 @@ void GameWindow::runGame(PlayerBar playerBar, Ball ball)
             playerBar.drawPlayerBar(window);
             ball.drawBall(window, bColidedPlayerBar);
 
-            for (int i = 0; i <= brickList.size() - 1; i++) {
-                brickList[i].drawBrick(window);
-            }
+            drawLevel(window, brickList);
 
             window.display();
 
@@ -256,10 +254,7 @@ void GameWindow::runGame(PlayerBar playerBar, Ball ball)
 
             window.clear();
             renderUI(window, lives, score);
-
-            for (int i = 0; i <= brickList.size() - 1; i++) {
-                brickList[i].drawBrick(window);
-            }
+            drawLevel(window, brickList);
 
             if (gameRunning) {
                 renderPlayAgainBox(window);
