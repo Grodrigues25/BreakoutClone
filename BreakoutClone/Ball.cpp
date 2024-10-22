@@ -3,7 +3,7 @@
 Ball::Ball()
 {
     Ball::bounceAngle = sqrt(2) / 2;
-    Ball::ballCoords = { 960, 540, bounceAngle };
+    Ball::ballCoords = { 560, 540, bounceAngle };
     Ball::ballWidth = 12;
 
     if (!ballLostLifeSoundObject.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\assets\\LostLifeSound.wav")) { cout << "Lost Life Sound failed to load!" << endl; }
@@ -82,7 +82,7 @@ void Ball::ballMovement(sf::Time time, int& lives, float& gameStartDelay, sf::So
     // TOP and BOTTOM colision checks
     if (ballCoords[1] + verticalMovement >= 1240) {
         playLostLifeSound(sound);
-        ballCoords[0] = 960;
+        ballCoords[0] = 560;
         ballCoords[1] = 540;
         lives--;
         gameStartDelay = 0;

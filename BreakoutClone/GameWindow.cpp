@@ -28,10 +28,6 @@ void GameWindow::drawLevel(sf::RenderWindow& window, vector<Brick> brickList) {
     for (int i = 0; i <= brickList.size() - 1; i++) { brickList[i].drawBrick(window); }
 }
 
-void GameWindow::barColisionSound(sf::SoundBuffer& barColisionSound) {
-
-}
-
 void GameWindow::renderUI(sf::RenderWindow& window, int& lives, int& score)
 {
     sf::RectangleShape outerEdges(sf::Vector2f(1120, 1240));

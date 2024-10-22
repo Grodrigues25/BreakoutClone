@@ -40,12 +40,12 @@ void PlayerBar::updateBarPosition(sf::RenderWindow& window) {
     velocity = 0.99f * velocity;
 
 }
+
 void PlayerBar::playBallBarColisionSound(sf::Sound& sound)
 {
     sound.setBuffer(barColisionSoundObject);
     sound.play();    
 }
-;
 
 // RENDERING
 void PlayerBar::drawPlayerBar(sf::RenderWindow& window) {
