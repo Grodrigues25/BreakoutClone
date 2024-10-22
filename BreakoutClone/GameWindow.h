@@ -21,7 +21,7 @@ public:
     bool bColidedPlayerBar;
     bool bColidedBrick;
     float colisionDelay;
-    vector<Brick> brickList; 
+    vector<Brick> brickList;
 
 public:
     GameWindow();
@@ -34,5 +34,11 @@ public:
     void drawLevel(sf::RenderWindow& window, vector<Brick> brickList);
 
     void renderUI(sf::RenderWindow& window, int& lives, int& score);
+
+    void renderPlayAgainBox(sf::RenderWindow& window);
+
+    void renderGameOverScreen(sf::RenderWindow& window);
+
+    void InteractWithPlayAgainBox(sf::RenderWindow& window, int mouseClickX, int mouseClickY, int& lives, bool& gameRunning);
 
 };
