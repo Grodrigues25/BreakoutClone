@@ -81,47 +81,50 @@ void GameWindow::renderPlayAgainBox(sf::RenderWindow& window) {
     sf::Font font;
     font.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\assets\\breakout.ttf");
 
+    int boxXposition = 290;
+    int boxYposition = 500;
+
     sf::RectangleShape boxOutline(sf::Vector2f(500, 240));
-    boxOutline.setPosition(150, 250);
+    boxOutline.setPosition(boxXposition, boxYposition);
     boxOutline.setFillColor(sf::Color::White);
 
     sf::RectangleShape boxContents(sf::Vector2f(490, 230));
-    boxContents.setPosition(155, 255);
+    boxContents.setPosition(boxXposition+5, boxYposition+5);
     boxContents.setFillColor(sf::Color::Black);
 
     sf::RectangleShape yesBoxOutline(sf::Vector2f(70, 50));
-    yesBoxOutline.setPosition(300, 375);
+    yesBoxOutline.setPosition(boxXposition + 150, boxYposition + 120);
     yesBoxOutline.setFillColor(sf::Color::White);
 
     sf::RectangleShape yesBoxContents(sf::Vector2f(66, 46));
-    yesBoxContents.setPosition(302, 377);
+    yesBoxContents.setPosition(boxXposition + 152, boxYposition + 122);
     yesBoxContents.setFillColor(sf::Color::Black);
 
     sf::RectangleShape noBoxOutline(sf::Vector2f(70, 50));
-    noBoxOutline.setPosition(425, 375);
+    noBoxOutline.setPosition(boxXposition + 270, boxYposition+120);
     noBoxOutline.setFillColor(sf::Color::White);
 
     sf::RectangleShape noBoxContents(sf::Vector2f(66, 46));
-    noBoxContents.setPosition(427, 377);
+    noBoxContents.setPosition(boxXposition + 272, boxYposition+122);
     noBoxContents.setFillColor(sf::Color::Black);
 
     playAgainQuestion.setFont(font);
     playAgainQuestion.setString("Would like to play again?");
     playAgainQuestion.setCharacterSize(30); // in pixels, not points!
     playAgainQuestion.setFillColor(sf::Color::White);
-    playAgainQuestion.setPosition(210, 300);
+    playAgainQuestion.setPosition(boxXposition + 60, boxYposition + 60);
 
     Yes.setFont(font);
     Yes.setString("Yes");
     Yes.setCharacterSize(25); // in pixels, not points!
     Yes.setFillColor(sf::Color::White);
-    Yes.setPosition(312, 380);
+    Yes.setPosition(boxXposition + 160, boxYposition + 130);
 
     No.setFont(font);
     No.setString("No");
     No.setCharacterSize(25); // in pixels, not points!
     No.setFillColor(sf::Color::White);
-    No.setPosition(442, 380);
+    No.setPosition(boxXposition + 289, boxYposition + 130);
 
     window.draw(boxOutline);
     window.draw(boxContents);
@@ -145,23 +148,24 @@ void GameWindow::renderGameOverScreen(sf::RenderWindow& window) {
     gameOver.setCharacterSize(50); // in pixels, not points!
     gameOver.setFillColor(sf::Color::White);
     gameOver.setStyle(sf::Text::Bold);
-    gameOver.setPosition(312, 500);
+    gameOver.setPosition(400, 500);
 
     window.draw(gameOver);
 
 }
 
-void GameWindow::InteractWithPlayAgainBox(sf::RenderWindow& window, int mouseClickX, int mouseClickY, int& lives, bool& gameRunning) {
+void GameWindow::InteractWithPlayAgainBox(sf::RenderWindow& window, int mouseClickX, int mouseClickY, int& lives, bool& gameRunning, int& score) {
 
     // YES BOX CLICKED
-    if (mouseClickX > 300 && mouseClickX < 370 && mouseClickY>375 && mouseClickY < 425) {
+    if (mouseClickX > 440 && mouseClickX < 510 && mouseClickY>620 && mouseClickY < 670) {
         lives = 3;
         brickList.resize(0);
         brickObjectsCreation();
+        score = 0;
     }
 
     // NO BOX CLICKED
-    if (mouseClickX > 425 && mouseClickX < 495 && mouseClickY>375 && mouseClickY < 425) {
+    if (mouseClickX > 560 && mouseClickX < 630 && mouseClickY>620 && mouseClickY < 670) {
         gameRunning = false;
     }
 }
@@ -259,7 +263,7 @@ void GameWindow::runGame(PlayerBar playerBar, Ball ball)
 
             if (gameRunning) {
                 renderPlayAgainBox(window);
-                if (event.mouseButton.button == sf::Mouse::Left) { InteractWithPlayAgainBox(window, event.mouseButton.x, event.mouseButton.y, lives, gameRunning); }
+                if (event.mouseButton.button == sf::Mouse::Left) { InteractWithPlayAgainBox(window, event.mouseButton.x, event.mouseButton.y, lives, gameRunning, score); }
             }
             else {
                 renderGameOverScreen(window);

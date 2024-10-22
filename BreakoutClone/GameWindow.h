@@ -39,6 +39,6 @@ public:
 
     void renderGameOverScreen(sf::RenderWindow& window);
 
-    void InteractWithPlayAgainBox(sf::RenderWindow& window, int mouseClickX, int mouseClickY, int& lives, bool& gameRunning);
+    void InteractWithPlayAgainBox(sf::RenderWindow& window, int mouseClickX, int mouseClickY, int& lives, bool& gameRunning, int& score);
 
 };
