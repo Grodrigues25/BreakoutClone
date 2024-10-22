@@ -1,5 +1,9 @@
 #include "Brick.h"
 
+Brick::Brick()
+{
+}
+
 Brick::Brick(int CoordsX, int CoordsY)
 {
     brickCoords[0] = CoordsX;

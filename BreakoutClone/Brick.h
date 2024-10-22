@@ -15,6 +15,7 @@ public:
     sf::SoundBuffer brickColisionSoundObject;
 
 public:
+    Brick();
     Brick(int CoordsX, int CoordsY);
 
     void drawBrick(sf::RenderWindow& window);
