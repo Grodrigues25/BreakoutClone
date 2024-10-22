@@ -3,7 +3,6 @@
 #include "PlayerBar.h"
 #include "Ball.h"
 #include "GameWindow.h"
-#include "Brick.h"
 
 using namespace std;
 

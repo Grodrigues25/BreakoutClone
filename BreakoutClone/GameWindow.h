@@ -2,9 +2,6 @@
 
 #include <iostream>
 #include "SFML/Graphics.hpp"
-#include "SFML/Audio.hpp"
-#include <numbers>
-#include <random>
 #include "PlayerBar.h"
 #include "Ball.h"
 #include "Brick.h"
