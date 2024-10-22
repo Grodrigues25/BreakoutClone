@@ -3,8 +3,10 @@
 Ball::Ball()
 {
     Ball::bounceAngle = sqrt(2) / 2;
-    Ball::ballCoords = { 960, 540, bounceAngle };
+    Ball::ballCoords = { 560, 540, bounceAngle };
     Ball::ballWidth = 12;
+
+    if (!ballLostLifeSoundObject.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\assets\\LostLifeSound.wav")) { cout << "Lost Life Sound failed to load!" << endl; }
 }
 
 Ball::~Ball()
@@ -63,7 +65,7 @@ void Ball::bounceBrickDirectionCalculation(Brick brick)
 
 }
 
-void Ball::ballMovement(sf::Time time)
+void Ball::ballMovement(sf::Time time, int& lives, float& gameStartDelay, sf::Sound& sound)
 {
     float speed = 500;
     float horizontalMovement = speed * cos(ballCoords[2]) * time.asSeconds();
@@ -78,13 +80,27 @@ void Ball::ballMovement(sf::Time time)
     }
 
     // TOP and BOTTOM colision checks
-    if (ballCoords[1] + verticalMovement <= 1240 && ballCoords[1] + verticalMovement >= 140) {
+    if (ballCoords[1] + verticalMovement >= 1240) {
+        playLostLifeSound(sound);
+        ballCoords[0] = 560;
+        ballCoords[1] = 540;
+        lives--;
+        gameStartDelay = 0;
+
+    }   
+    else if(ballCoords[1] + verticalMovement <= 1240 && ballCoords[1] + verticalMovement >= 140) {
         ballCoords[1] += verticalMovement;
     }
     else {
         ballCoords[2] = -ballCoords[2];
         ballCoords[1] += verticalMovement;
     }
+}
+
+void Ball::playLostLifeSound(sf::Sound& sound)
+{
+    sound.setBuffer(ballLostLifeSoundObject);
+    sound.play();
 }
 
 // RENDERING

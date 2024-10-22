@@ -33,8 +33,6 @@ public:
 
     void drawLevel(sf::RenderWindow& window, vector<Brick> brickList);
 
-    void barColisionSound(sf::SoundBuffer& barColisionSound);
-
     void renderUI(sf::RenderWindow& window, int& lives, int& score);
 
 };

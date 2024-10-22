@@ -2,6 +2,8 @@
 
 PlayerBar::PlayerBar() {
     PlayerBar::playerCoords = { 500, 1100 };
+
+    if (!barColisionSoundObject.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\assets\\ballBarBounce.wav")) { cout << "Ball Bar Bounce sound failed to load!" << endl; }
 }
 
 PlayerBar::~PlayerBar() {
@@ -37,7 +39,13 @@ void PlayerBar::updateBarPosition(sf::RenderWindow& window) {
     // apply damping to the velocity
     velocity = 0.99f * velocity;
 
-};
+}
+
+void PlayerBar::playBallBarColisionSound(sf::Sound& sound)
+{
+    sound.setBuffer(barColisionSoundObject);
+    sound.play();    
+}
 
 // RENDERING
 void PlayerBar::drawPlayerBar(sf::RenderWindow& window) {
