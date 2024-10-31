@@ -16,6 +16,7 @@ public:
 public:
     Brick();
     Brick(int CoordsX, int CoordsY);
+    ~Brick();
 
     void drawBrick(sf::RenderWindow& window);
 

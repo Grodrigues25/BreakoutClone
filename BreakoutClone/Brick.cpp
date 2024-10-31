@@ -12,6 +12,10 @@ Brick::Brick(int CoordsX, int CoordsY)
     if (!brickColisionSoundObject.loadFromFile("C:\\Users\\gonca\\source\\repos\\BreakoutClone\\assets\\brickDestroyedSound.wav")) { cout << "Brick Destroyed Sound failed to load!" << endl; }
 }
 
+Brick::~Brick()
+{
+}
+
 void Brick::drawBrick(sf::RenderWindow& window)
 {
     sf::RectangleShape brick(sf::Vector2f(length, 20.f));
