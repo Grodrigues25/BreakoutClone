@@ -3,7 +3,6 @@
 #include <iostream>
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
-#include <numbers>
 
 using namespace std;
 
@@ -17,6 +16,7 @@ public:
 public:
     Brick();
     Brick(int CoordsX, int CoordsY);
+    ~Brick();
 
     void drawBrick(sf::RenderWindow& window);
 

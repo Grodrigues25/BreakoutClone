@@ -15,10 +15,11 @@ GameWindow::~GameWindow()
 void GameWindow::brickObjectsCreation()
 {
     int CoordY = 200;
+    int CoordX = 22;
 
-    for (int i = -1; i < 20; i++) {
-        int CoordX = 22 + i * (50 + 4);       
-        if (CoordX + 50 > 1080 && CoordY <= 290) { i = -1; CoordY += 30; }
+    for (int i = 0; i <= 20; i++) {             
+        if (CoordX + 50 > 1080 && CoordY <= 290) { i = 0; CoordY += 30; }
+        CoordX = 22 + i * (50 + 4);
         brickList.push_back(Brick(CoordX, CoordY));
     }
 }

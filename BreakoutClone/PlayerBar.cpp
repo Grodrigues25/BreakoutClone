@@ -16,7 +16,7 @@ void PlayerBar::updateBarPosition(sf::RenderWindow& window) {
     sf::Vector2f velocity;
 
     // adjust this at will
-    const float dAcc = 3.6f;
+    const float dAcc = 10.f;
 
     // set acceleration
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) { acceleration.x -= dAcc; }
