@@ -6,8 +6,6 @@
 
 using namespace std;
 
-// TODO: Show a time to start the game
-
 int main() {
     PlayerBar playerBar;
     Ball ball;
