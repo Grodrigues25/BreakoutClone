@@ -6,7 +6,6 @@
 
 using namespace std;
 
-// TODO: Debug maximum angle for bouncing of the playerBar
 // TODO: Show a time to start the game
 
 int main() {

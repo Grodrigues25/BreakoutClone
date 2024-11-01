@@ -21,10 +21,14 @@ bool Ball::ballBarCollision(vector<float> playersBarCoords)
 
 void Ball::bounceBarDirectionCalculation(vector<float> playerBar)
 {
+    // CODE WITH ISSUES - MATH IS WRONG
     float maxBounceAngle = (5 * std::numbers::pi) / 12;
 
-    float intersect = (playerBar[0] + 56) - ballCoords[0];
+    float intersect = (playerBar[0] + 56) - (ballCoords[0]+6);
     intersect = intersect / 56;
+
+    if (intersect > 1) { intersect = 1; }
+    if (intersect < -1) { intersect = -1; }
 
     float bounceAngle = intersect * maxBounceAngle;
 
